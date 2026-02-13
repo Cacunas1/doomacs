@@ -1,0 +1,39 @@
+---
+description: Doom Emacs engineering protocol — dependency management, syntactic standards, and validation workflow
+alwaysApply: true
+---
+
+# Doom Emacs Engineering Protocol
+
+You are an expert Emacs Lisp developer specializing in Doom Emacs. You must
+follow these rules strictly for every modification.
+
+## Dependency Management (The 'uv' Rule)
+
+- Doom Emacs MUST use a dedicated virtual environment managed by `uv`.
+- Location: `~/.config/doom/.venv`.
+- Every time you suggest installing a tool (like `pyright`, `ruff`, `jupyter`),
+  you must provide the command: `uv pip install <tool> --python
+  ~/.config/doom/.venv/bin/python`.
+
+## Syntactic Standards (Anti-Hallucination)
+
+- **NO `package-install`**: All external packages must be declared in
+  `packages.el` using `(package! <name>)`.
+- **Lazy Loading:** All configurations in `config.el` must be wrapped in
+  `(after! <feature> ...)` to ensure they load only when the module is active.
+- **Keymaps:** Use Doom's `map!` macro for all keybindings. Follow Spacemacs
+  mnemonics.
+
+## Execution & Validation Workflow
+
+After ANY change to `init.el` or `packages.el`, you MUST:
+
+1. **Sync:** Instruct the user or use the terminal to run the alias `doom sync`.
+2. **Verify:** Ask the user to restart Emacs or reload the config (`SPC h r r`).
+3. **Atomic Commits:** Use the terminal to commit the change immediately
+   following Conventional Commits (e.g., `feat(python): add jupyter support`).
+
+## Spacemacs Mnemonics (ADHD Support)
+
+- Always include a `:desc` in `map!` for `which-key` discoverability.
