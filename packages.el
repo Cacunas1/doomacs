@@ -52,3 +52,10 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
+
+;;; Data Science & Jupyter
+(package! jupyter)           ; emacs-jupyter (org +jupyter lo requiere)
+(package! code-cells)        ; navegacion estilo notebook en .py
+
+;;; SQL & BigQuery
+(package! sql-indent)        ; indentacion SQL mejorada
