@@ -81,3 +81,57 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;;; Transparency
+;; Set background transparency to 90% (100 is fully opaque, 0 is fully transparent)
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+;; To set the transparency for the current frame immediately
+(set-frame-parameter nil 'alpha-background 90)
+;; Esto intenta activar la barra de título transparente nativa de macOS
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark)) ;; o 'light
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+
+;;; Performance
+;; Optimización del Garbage Collector para archivos grandes y LSP
+(setq gc-cons-threshold 100000000) ; 100mb
+(setq read-process-output-max (* 1024 1024)) ; 1mb para mejorar el throughput de LSP/Jupyter
+
+;;; Data Science: Jupyter + Org-Babel
+(after! org
+  (setq org-image-actual-width '(450))
+  (add-hook 'org-babel-after-execute-hook #'org-display-inline-images))
+
+(after! jupyter
+  (setq jupyter-repl-echo-eval-p t))
+
+;;; LSP & Python (basedpyright en venv)
+(after! lsp-pyright
+  (setq lsp-pyright-langserver-command (expand-file-name "~/.config/doom/.venv/bin/basedpyright")
+        lsp-pyright-venv-path (expand-file-name "~/.config/doom/.venv")))
+
+;;; Formato Python con Ruff (usa ruff del venv)
+(after! format
+  (set-formatter! 'ruff
+    (lambda ()
+      (list (expand-file-name "~/.config/doom/.venv/bin/ruff")
+            "format" "--stdin-filename" (or (buffer-file-name) "") "-"))
+    :modes '(python-mode python-ts-mode)))
+
+;;; SQL / BigQuery
+(after! sql
+  (setq sql-product 'ansi)
+  (sql-set-product-feature 'ansi :prompt-regexp "^.*> "))
+
+;;; Keybindings Data Science (SPC d)
+(map! :leader
+      :prefix ("d" . "data-science")
+      :desc "Ejecutar celda Jupyter"   "j" #'jupyter-eval-line-or-region
+      :desc "Reiniciar kernel Jupyter" "r" #'jupyter-repl-restart-kernel
+      :desc "Inspeccionar objeto"      "i" #'lsp-describe-thing-at-point
+      :desc "Conectar BigQuery (SQL)"  "b" #'sql-connect)
+
+;; asegura transparencia en tema también
+(add-hook 'doom-load-theme-hook
+          (lambda ()
+            (set-frame-parameter nil 'alpha-background 90)))
