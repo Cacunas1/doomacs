@@ -16,7 +16,7 @@ todos:
     status: completed
   - id: doom-sync
     content: Ejecutar doom sync y verificar que no haya errores
-    status: in_progress
+    status: completed
 isProject: false
 ---
 
