@@ -23,6 +23,14 @@
 ;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+;; Fira Code tamaño 12 (el estándar de Doom).
+;; 'semi-light' suele verse muy bien en pantallas Retina,
+;; pero puedes cambiarlo a 'medium' o 'regular' si la sientes muy fina.
+(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+      ;; Opcional: Fuente para comentarios y docstrings (Cursiva)
+      ;; Si no tienes 'Script12 BT', puedes borrar esta línea o usar otra cursiva.
+      ;; O simplemente dejar que use Fira Code también.
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
