@@ -19,6 +19,7 @@
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
 
 ;; Hook para asegurar transparencia al cambiar de tema o recargar
 (add-hook! 'doom-load-theme-hook
