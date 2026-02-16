@@ -105,6 +105,10 @@
 (after! jupyter
   (setq jupyter-repl-echo-eval-p t))
 
+;;; code-cells: activar en .py con celdas # %%
+(after! code-cells
+  (add-hook 'python-mode-hook #'code-cells-mode-maybe))
+
 ;;; LSP & Python (basedpyright en venv)
 (after! lsp-pyright
   (setq lsp-pyright-langserver-command (expand-file-name "~/.config/doom/.venv/bin/basedpyright")
@@ -126,7 +130,8 @@
 ;;; Keybindings Data Science (SPC d)
 (map! :leader
       :prefix ("d" . "data-science")
-      :desc "Ejecutar celda Jupyter"   "j" #'jupyter-eval-line-or-region
+      :desc "Ejecutar celda actual"    "j" #'jupyter-eval-line-or-region
+      :desc "Ejecutar celda actual"    "x" #'code-cells-eval
       :desc "Reiniciar kernel Jupyter" "r" #'jupyter-repl-restart-kernel
       :desc "Inspeccionar objeto"      "i" #'lsp-describe-thing-at-point
       :desc "Conectar BigQuery (SQL)"  "b" #'sql-connect)
