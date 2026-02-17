@@ -56,6 +56,7 @@
 ;;; Data Science & Jupyter
 (package! jupyter)           ; emacs-jupyter (org +jupyter lo requiere)
 (package! code-cells)        ; navegacion estilo notebook en .py
+(package! org-preview-html)  ; preview HTML con xwidget-webkit
 
 ;;; SQL & BigQuery
 (package! sql-indent)        ; indentacion SQL mejorada
