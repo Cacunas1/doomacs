@@ -4,13 +4,13 @@ overview: Configurar org-preview-html con xwidget-webkit para previsualizar auto
 todos:
   - id: add-package
     content: Declarar org-preview-html en packages.el
-    status: pending
+    status: completed
   - id: configure
     content: Configurar org-preview-html, popup rule y keybinding en config.el
-    status: pending
+    status: in_progress
   - id: doom-sync
     content: Ejecutar doom sync
-    status: pending
+    status: completed
 isProject: false
 ---
 
