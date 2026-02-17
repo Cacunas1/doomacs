@@ -65,7 +65,17 @@
       :desc "Ejecutar y saltar"           "j" #'code-cells-eval-and-step
       :desc "Reiniciar REPL"              "r" #'python-shell-restart
       :desc "Inspeccionar objeto"         "i" #'lsp-describe-thing-at-point
-      :desc "Conectar BigQuery (SQL)"     "b" #'sql-connect)
+      :desc "Conectar BigQuery (SQL)"     "b" #'sql-connect
+      :desc "Toggle vista HTML xwidget"   "v" #'org-preview-html-mode)
+
+;;; 6. Visualizacion HTML con xwidget-webkit
+;; ------------------------------------------
+(after! org-preview-html
+  (setq org-preview-html-viewer 'xwidget
+        org-preview-html-refresh-configuration 'save))
+
+;; Popup rule para que xwidget se abra a la derecha
+(set-popup-rule! "^\\*xwidget" :side 'right :size 0.5 :quit nil :ttl nil)
 
 ;;; 6. Auto-activación de entorno UV (El snippet que te di antes)
 ;; Si NO usas direnv, descomenta esto para que detecte .venv automáticamente
