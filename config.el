@@ -37,12 +37,6 @@
 (after! direnv
   (direnv-mode +1))
 
-;; Configurar org-babel para Jupyter
-(after! org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((jupyter . t))))
-
 ;; Configurar emacs-jupyter para buscar kernels en el proyecto
 (after! jupyter
   ;; Prioriza kernels del proyecto (.venv/share/jupyter/kernels)
