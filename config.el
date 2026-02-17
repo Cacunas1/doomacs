@@ -39,11 +39,20 @@
 
 ;; Configurar emacs-jupyter para buscar kernels en el proyecto
 (after! jupyter
-  ;; Prioriza kernels del proyecto (.venv/share/jupyter/kernels)
-  ;; Fallback: usar kernels globales de Jupyter
-  (setq jupyter-kernel-search-functions
-        '(jupyter-kernel-search-current-dir
-          jupyter-kernel-search-system)))
+  ;; Buscar kernels en el venv del proyecto actual
+  (defun my-get-project-jupyter-data-dir ()
+    (let* ((root (locate-dominating-file (buffer-file-name) ".venv"))
+           (data-dir (if root (expand-file-name ".venv/share/jupyter" root) nil)))
+      (when (and data-dir (file-exists-p data-dir))
+        data-dir)))
+
+  ;; Agregar data-dir del proyecto a la búsqueda
+  (add-hook 'find-file-hook
+    (lambda ()
+      (let ((proj-data-dir (my-get-project-jupyter-data-dir)))
+        (when proj-data-dir
+          (setq jupyter-data-dir proj-data-dir))))))
+
 
 ;; Code-Cells: La magia para # %%
 (after! code-cells
