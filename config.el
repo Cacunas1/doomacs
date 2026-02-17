@@ -33,6 +33,12 @@
 ;;; 4. Python & Data Science Configuration
 ;; ----------------------------------------
 
+;; Configurar org-babel para Jupyter
+(after! org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((jupyter . t))))
+
 ;; Code-Cells: La magia para # %%
 (after! code-cells
   ;; Usamos el hook para activar el modo solo si detecta celdas o es .py
