@@ -33,11 +33,23 @@
 ;;; 4. Python & Data Science Configuration
 ;; ----------------------------------------
 
+;; Direnv: Auto-load .envrc del proyecto para usar venv local
+(after! direnv
+  (direnv-mode +1))
+
 ;; Configurar org-babel para Jupyter
 (after! org
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((jupyter . t))))
+
+;; Configurar emacs-jupyter para buscar kernels en el proyecto
+(after! jupyter
+  ;; Prioriza kernels del proyecto (.venv/share/jupyter/kernels)
+  ;; Fallback: usar kernels globales de Jupyter
+  (setq jupyter-kernel-search-functions
+        '(jupyter-kernel-search-current-dir
+          jupyter-kernel-search-system)))
 
 ;; Code-Cells: La magia para # %%
 (after! code-cells

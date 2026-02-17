@@ -57,6 +57,7 @@
 (package! jupyter)           ; emacs-jupyter (org +jupyter lo requiere)
 (package! code-cells)        ; navegacion estilo notebook en .py
 (package! org-preview-html)  ; preview HTML con xwidget-webkit
+(package! direnv)            ; auto-load .envrc para usar venv local del proyecto
 
 ;;; SQL & BigQuery
 (package! sql-indent)        ; indentacion SQL mejorada
