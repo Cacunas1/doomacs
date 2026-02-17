@@ -10,7 +10,7 @@
       doom-variable-pitch-font (font-spec :family "Fira Code" :size 13))
 
 (setq doom-theme 'doom-oceanic-next)
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 (setq org-directory "~/org/")
 
 ;;; 2. UI y Transparencia
