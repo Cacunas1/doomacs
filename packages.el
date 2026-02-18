@@ -61,3 +61,6 @@
 
 ;;; SQL & BigQuery
 (package! sql-indent)        ; indentacion SQL mejorada
+
+;;; Log files (Python logger, syslog, etc.)
+(package! logview)           ; visualización de logs con filtros y coloreado
