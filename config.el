@@ -98,7 +98,14 @@
 ;; Popup rule para que xwidget se abra a la derecha
 (set-popup-rule! "^\\*xwidget" :side 'right :size 0.5 :quit nil :ttl nil)
 
-;;; 6. Auto-activación de entorno UV (El snippet que te di antes)
+;;; 6. Soporte para archivos Log (Python logging, syslog, etc.)
+;; ----------------------------------------
+;; Nota: log-view-mode (built-in) es para CVS/version control.
+;; Usamos el paquete 'logview' para logs de aplicaciones (Python logger, etc.)
+(add-to-list 'auto-mode-alist '("\\.log\\'" . logview-mode))
+(add-to-list 'auto-mode-alist '("\\.log\\.[0-9]+\\'" . logview-mode))
+
+;;; 7. Auto-activación de entorno UV (El snippet que te di antes)
 ;; Si NO usas direnv, descomenta esto para que detecte .venv automáticamente
 ;; (defun my-activar-venv ()
 ;;   "Busca y activa el entorno virtual .venv del proyecto automáticamente."
