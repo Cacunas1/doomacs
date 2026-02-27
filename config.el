@@ -48,10 +48,10 @@
 
   ;; Agregar data-dir del proyecto a la búsqueda
   (add-hook 'find-file-hook
-    (lambda ()
-      (let ((proj-data-dir (my-get-project-jupyter-data-dir)))
-        (when proj-data-dir
-          (setq jupyter-data-dir proj-data-dir))))))
+            (lambda ()
+              (let ((proj-data-dir (my-get-project-jupyter-data-dir)))
+                (when proj-data-dir
+                  (setq jupyter-data-dir proj-data-dir))))))
 
 
 ;; Code-Cells: La magia para # %%
@@ -115,3 +115,6 @@
 ;;       (pyvenv-activate venv-path)
 ;;       (message "Entorno UV activado: %s" venv-path))))
 ;; (add-hook 'python-mode-hook 'my-activar-venv)
+(setq scroll-margin 10
+      scroll-step 1
+      scroll-conservatively 101) ;; Un valor > 100 asegura que el cursor nunca salte al centro
