@@ -6,8 +6,8 @@
 
 ;;; 1. Fuentes y Tema
 ;; -------------------
-(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 13))
 
 (setq doom-theme 'doom-oceanic-next)
 (setq display-line-numbers-type 'relative)
@@ -118,3 +118,11 @@
 (setq scroll-margin 10
       scroll-step 1
       scroll-conservatively 101) ;; Un valor > 100 asegura que el cursor nunca salte al centro
+
+;; ; 8. Exportación org2markdown
+(after! org
+  (add-to-list 'org-export-backends 'md))
+
+;;; 9. Claude Code chats en Orgmode
+;; --------------------------------
+(load! "lisp/claude-code-org")

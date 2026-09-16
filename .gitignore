@@ -1,5 +1,7 @@
 # Compiled
 *.elc
+__pycache__/
+*.py[cod]
 
 # Packaging
 .cask/
