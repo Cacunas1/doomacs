@@ -126,3 +126,7 @@
 ;;; 9. Claude Code chats en Orgmode
 ;; --------------------------------
 (load! "lisp/claude-code-org")
+
+;;; 10. Agentes LLM (gptel): planner / implementer / reviewer
+;; -----------------------------------------------------------
+(load! "lisp/gptel-multiagent")
